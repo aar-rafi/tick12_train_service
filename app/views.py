@@ -56,10 +56,10 @@ def get_train_names_view(request):
             date_str = data.get('date')
 
             # Convert date from "dd/mm/yy" to "YYYY-MM-DD"
-            date_obj = datetime.strptime(date_str, '%d/%m/%y')  # Convert to date object
-            date_formatted = date_obj.strftime('%Y-%m-%d')  # Convert to "YYYY-MM-DD"
+            #date_obj = datetime.strptime(date_str, '%d/%m/%y')  # Convert to date object
+            #date_formatted = date_obj.strftime('%Y-%m-%d')  # Convert to "YYYY-MM-DD"
 
-            trains = get_train_names(from_station_name, to_station_name, date_formatted)
+            trains = get_train_names(from_station_name, to_station_name, date_str)
             return JsonResponse(trains, safe=False)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
