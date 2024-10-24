@@ -1,0 +1,38 @@
+# train-service Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tick12-train-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: train
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: train
+    spec:
+      containers:
+        - name: tick12-train-service
+          image: ishrakadit07/tick12_train_service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8003
+          envFrom:
+            - configMapRef:
+                name: template-config
+            - secretRef:
+                name: postgres-secret
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

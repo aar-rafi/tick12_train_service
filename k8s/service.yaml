@@ -1,0 +1,13 @@
+# train-service Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: tick12-train-service
+spec:
+  selector:
+    app: train
+  ports:
+    - protocol: TCP
+      port: 8003
+      targetPort: 8003
+  type: ClusterIP
