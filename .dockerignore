@@ -16,7 +16,6 @@ env/
 # Ignore database and secrets
 *.sqlite3
 *.db
-.env
 
 # Ignore compiled code
 *.so
