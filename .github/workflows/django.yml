@@ -80,8 +80,10 @@ jobs:
       run: |
         sudo snap install kubectl --classic
 
-    - name: Deploy to DigitalOcean Kubernetes
-      env:
-        KUBECONFIG: ${{ secrets.DIGITALOCEAN_KUBECONFIG }}
+    - name: Write KUBECONFIG to file
       run: |
-        kubectl rollout restart deployment tick12-train-deploy
+        echo "${{ secrets.DIGITALOCEAN_KUBECONFIG }}" > /tmp/kubeconfig
+
+    - name: Deploy to DigitalOcean Kubernetes
+      run: |
+        KUBECONFIG=/tmp/kubeconfig kubectl rollout restart deployment tick12-train-deploy
