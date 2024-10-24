@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 import json
 
+
 class TrainNamesAPITest(TestCase):
     def setUp(self):
         # Setup run before every test.
