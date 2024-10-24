@@ -92,7 +92,7 @@ jobs:
 
       - name: Set kubectl context for the Kubernetes cluster
         run: |
-          doctl kubernetes cluster kubeconfig save do-sgp1-micro-redis-1
+          doctl kubernetes cluster kubeconfig save ${{ secrets.DIGITALOCEAN_CLUSTER_ID }}
 
       - name: Deploy to DigitalOcean Kubernetes
         run: |
