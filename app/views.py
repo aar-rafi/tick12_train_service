@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import psycopg2
 import os
+# from os import getenv #new_line
 from dotenv import load_dotenv
 import json
 from datetime import datetime  # Import datetime
@@ -13,9 +14,17 @@ load_dotenv()
 ca_certificate_path = './ca-certificate.crt'
 
 # Database connection configuration
-connection_string = f"dbname=template-pool user=doadmin password={os.getenv('POSTGRES_PASSWORD')} host=template-pg-do-user-18003520-0.g.db.ondigitalocean.com port=25061 sslmode=require"
+# connection_string = f"dbname=template-pool user=doadmin password={os.getenv('POSTGRES_PASSWORD')} host=template-pg-do-user-18003520-0.g.db.ondigitalocean.com port=25061 sslmode=require"
 
 # Create a connection pool
+# def get_connection():
+#     return psycopg2.connect(
+#         connection_string,
+#         sslmode='verify-full',
+#         sslrootcert=ca_certificate_path,
+#         host="template-pg-do-user-18003520-0.g.db.ondigitalocean.com"
+#     )
+
 def get_connection():
     return psycopg2.connect(
         connection_string,
